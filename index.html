@@ -1,212 +1,59 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>RDC-Localisation</title>
-    <!--<link rel="stylesheet" href="bootstrap-4.1.3-dist/css/bootstrap.min.css">-->
-    <!--<link rel="stylesheet" href="style.css">-->
-    <link href="Content/bootstrap.min.css" rel="stylesheet" />
-    <link href="./css/style.css" rel="stylesheet" />
-    <link href="css/fixed.css" rel="stylesheet" />
-    <!--<link rel="stylesheet" href="css/fixed.css">-->
-</head>
-<body data-spy="scroll" data-target="#navbarResponsive">
+<style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 400px;
+        width:400px;
+      }
+    
+    </style>
 
-    <!--- Start Home Section -->
-    <div id="home" class="offset">
-        <!--- Start Navigation -->
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-            <!--<a class="navbar-brand" href="#"><img src="img/nuno.png"></a>-->
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+     <div id="map"></div>
+        <script>
+      // Note: This example requires that you consent to location sharing when
+      // prompted by your browser. If you see the error "The Geolocation service
+      // failed.", it means you probably did not give permission for the browser to
+      // locate you.
+      var map, infoWindow;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: { lat: -4.322447, lng: 15.307045 },
+          zoom: 6
+        });
+        infoWindow = new google.maps.InfoWindow;
 
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#home">ACCUEIL</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#course">TROUVER UNE ADRESSE</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#features">MON COMPTE</a>
-                    </li>
-                    <!--<li class="nav-item">
-                        <a class="nav-link" href="#resources">Resources</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#clients">Clients</a>
-                    </li>-->
-                    <li class="nav-item">
-                        <a class="nav-link" href="#contacts">Contacts</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>    
-        <!--- End Navigation -->
+        // Try HTML5 geolocation.
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            var pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
 
-        <!--- Start Landing Page Section -->
+            infoWindow.setPosition(pos);
+            infoWindow.setContent('Your location.');
+        
+            infoWindow.open(map);
+            map.setCenter(pos);
+          }, function() {
+            handleLocationError(true, infoWindow, map.getCenter());
+          });
+        } else {
+          // Browser doesn't support Geolocation
+          handleLocationError(false, infoWindow, map.getCenter());
+        }
+      }
 
-
-        <div class="landing">
-            <div class="home-wrap">
-                <div class="home-inner">
-                </div>
-            </div>
-        </div>
-
-        <!--<div class="Right-Men dropright">
-            <a class="btn btn-outline-light btn-lg" href="#course">Mon Compte</a>
-        </div>-->
-     
-        <div class="caption text-center">
-
-            <h1>Congo Map</h1> 
-           
-            <!--<a class="btn btn-outline-light btn-lg" href="#course">Mon Compte</a>-->
-
-            <section class="search-sec">
-                <div class="container">
-                    <form action="#" method="post" novalidate="novalidate">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="row">
-                                    <!--<div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                                <input type="text" class="form-control search-slt" placeholder="Enter Pickup City">
-                            </div>-->
-                                    <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                                        <input type="text" class="form-control search-slt" placeholder="Entreprises, Restaurants,Boutiques...">
-                                    </div>
-                                    <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                                        <select class="form-control search-slt" id="exampleFormControlSelect1">
-                                            <option>Séléctionner la ville</option>
-                                            <option>Kinshasa</option>
-                                            <option>Lubumbashi</option>
-                                            <option>Kisangani</option>
-                                            <!--<option>Example one</option>
-                                    <option>Example one</option>
-                                    <option>Example one</option>-->
-                                        </select>
-                                    </div>
-                                    <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                                        <button type="button" class="btn btn-danger wrn-btn">Trouver</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </section>
-
-
-
-            <!--<a class="btn btn-outline-light btn-lg" href="#course">Mon Compte</a>-->
-        </div>
-
-      
-        <!--- End Landing Page  Section -->
-    </div>
-    <!--- End Home Section -->
-
-    <!--- Start Course Section -->
-    <div id="course" class="offset">
-        <div class="col-12 narrow text-center">
-            <h1>Faire connaître son entreprise</h1>
-            <p class="lead">Votre entreprise fondée, il vous faut maintenant penser à la faire connaître. L’objectif de créer un compte est de faire parler d’elle et vendre. Ceci induit notamment l’image de la société, ses produits/services ainsi que sa réputation. Pour vous aider à y parvenir, appuyer le bouton bas!</p>
-            <a class="btn btn-secondary btn-md" href="#" target="_blank">Faire connaître son entreprise</a>
-        </div>
-    </div>
-    <!--- End Course Section -->
-
-    <!--- Start Features Section -->
-    <div id="features" class="offset">
-        <!--- Start Jumbotron -->
-        <div class="jumbotron">
-            <div class="narrow">
-                <div class="col-12">
-                    <h3 class="heading">Recherches fréquentes</h3>
-                    <div class="heading-underline"></div>
-                </div>
-
-                <div class="row text-center">
-                    <div class="col-md-4">
-                        <div class="feature">
-                            <i class="fab fa-wpforms fa-4x" data-fa-transform="shrink-4 up-5"></i>
-                            <h3>EXEMPLE</h3>
-                             <p class="lead">Votre entreprise fondée, il vous faut maintenant penser à la faire connaître.</p>
-                        </div>
-                    </div>
-
-                   
-                        <div class="col-md-4">
-                            <div class="feature">
-                                <i class="fab fa-wpforms fa-4x" data-fa-transform="shrink-4 up-5"></i>
-                                <h3>EXEMPLE</h3>
-                                <p class="lead">Votre entreprise fondée, il vous faut maintenant penser à la faire connaître.</p>
-                            </div>
-                        </div>
-
-                      
-                            <div class="col-md-4">
-                                <div class="feature">
-                                    <i class="fab fa-wpforms fa-4x" data-fa-transform="shrink-4 up-5"></i>
-                                    <h3>EXEMPLE</h3>
-                                    <p class="lead">Votre entreprise fondée, il vous faut maintenant penser à la faire connaître.</p>
-                                </div>
-                            </div>
-
-                        </div><!--- End Row -->
-
-            </div> <!--- End Narrow -->
-        </div> <!--- End Jumbotron -->
-       
-    </div>
-    <!--- End Features Section -->
-
-    <!--- Start Resources Section -->
-    <div id="resources" class="offset">
-        <div class="fixed-background">
-            <div class="row dark">
-
-                <div class="col-12">
-                    <!--<h3 class="heading">Buil With Care</h3>-->
-                    <div class="heading-underline"></div>
-                </div>
-
-
-            </div><!--- End Row Dark -->
-
-            <div class="fixed-wrap">
-                <div class="fixed">
-                </div>
-            </div>
-
-        </div><!--- End Fixed Background -->
-    </div>
-    <!--- End Resources Section -->
-
-    <!--- Start Clients Section -->
-    <div id="clients" class="offset">
-
-    </div>
-    <!--- End Clients Section -->
-
-    <!--- Start Contacts Section -->
-    <div id="contacts" class="offset">
-
-    </div>
-    <!--- End Contacts Section -->
-
-
-    <!--- Script Source Files -->
-
-    <script src="scripts/jquery-3.0.0.min.js"></script>
-    <script src="scripts/bootstrap.min.js"></script>
-    <!--<script src="js/jquery-3.3.1.min.js"></script>-->
-    <!--<script src="bootstrap-4.1.3-dist/js/bootstrap.min.js"></script>-->
-    <script src="https://use.fontawesome.com/releases/v5.5.0/js/all.js"></script>
-    <!--- End of Script Source Files -->
-</body>
+      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+        infoWindow.setPosition(pos);
+        infoWindow.setContent(browserHasGeolocation ?
+                              'Error: The Geolocation service failed.' :
+                              'Error: Your browser doesn\'t support geolocation.');
+        infoWindow.open(map);
+      }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVN2ZS56PNmyM5XyXZ-KC9CZxdrtEBAK4&callback=initMap"
+    async defer></script>
 </html>
