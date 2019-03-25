@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <style>
-       /* Always set the map height explicitly to define the size of the div
+      <style>
+      /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
         height: 400px;
@@ -10,10 +9,9 @@
       }
     
     </style>
-  </head>
-  <body>
-    <div id="map"></div>
-    <script>
+
+     <div id="map"></div>
+        <script>
       // Note: This example requires that you consent to location sharing when
       // prompted by your browser. If you see the error "The Geolocation service
       // failed.", it means you probably did not give permission for the browser to
@@ -57,10 +55,7 @@
                               'Error: Your browser doesn\'t support geolocation.');
         infoWindow.open(map);
       }
-
     </script>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVN2ZS56PNmyM5XyXZ-KC9CZxdrtEBAK4&callback=initMap">
-    </script>
-  </body>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVN2ZS56PNmyM5XyXZ-KC9CZxdrtEBAK4&callback=initMap"
+    async defer></script>
 </html>
